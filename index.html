@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>gPlex Webchat</title>
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/src/css/style.css" />
   </head>
   <body>
 
@@ -12,16 +12,13 @@
          style="width:380px; height:640px; border: 2px solid #16a34a;">
 
       <!-- ── HEADER (shared) ─────────────────────────────────── -->
-      <header class="flex items-center gap-3 px-4 py-3 bg-white border-b border-gray-100 shrink-0"
-              style="border-top: 3px solid #16a34a;">
-        <div class="flex items-center justify-center w-9 h-9 rounded-lg shrink-0"
-             style="background:#16a34a;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
-          </svg>
+      <header class="flex items-center gap-3 px-4 py-3 bg-white border-b border-gray-100 shrink-0">
+        <div class="flex items-center rounded-full justify-center w-12 h-12  shrink-0 border border-gray-200"
+             style="background:#ffffff;">
+          <img src="/src/assets/images/logo.png" alt="">
         </div>
         <div class="flex-1 min-w-0">
-          <p class="text-sm font-semibold text-gray-800 leading-tight" style="font-family:'Sora',sans-serif;">gPlex Webchat</p>
+          <p class="text-sm font-semibold text-gray-800 leading-tight" style="font-family:'Sora',sans-serif;">Apex</p>
           <p class="text-xs text-green-600 font-medium flex items-center gap-1">
             <span class="inline-block w-1.5 h-1.5 rounded-full bg-green-500"></span>
             Online
@@ -37,7 +34,7 @@
 
       <!-- ══ SCREEN: LOGIN ════════════════════════════════════════ -->
       <div id="screen-login" class="flex-1 flex flex-col bg-white px-6 pt-8 pb-4 screen-panel">
-        <h2 class="text-base font-bold text-gray-800 mb-6 leading-snug">
+        <h2 class="text-base text-center font-bold text-gray-800 mb-6 leading-snug">
           Welcome to gPlex Webchat Online Service!
         </h2>
         <label class="text-sm text-gray-700 font-medium mb-1">Name</label>
@@ -135,6 +132,6 @@
 
     </div><!-- /chat-widget -->
 
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="/src/js/main.js"></script>
   </body>
 </html>
