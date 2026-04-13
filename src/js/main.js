@@ -36,6 +36,7 @@ const screens = {
   feedback : document.getElementById('screen-feedback'),
   thankyou : document.getElementById('screen-thankyou'),
 };
+console.log(typeof screens);
 const loginNameEl       = document.getElementById('login-name');
 const loginPhoneEl      = document.getElementById('login-phone');
 const loginErrorEl      = document.getElementById('login-error');
@@ -44,6 +45,8 @@ const chatBody          = document.getElementById('chat-body');
 const msgInput          = document.getElementById('msg-input');
 const sendBtn           = document.getElementById('send-btn');
 const closeBtn          = document.getElementById('close-btn');
+const minimizeBtn       = document.getElementById('minimize-btn');
+const chatWidget        = document.getElementById('chat-widget');
 const starBtns          = document.querySelectorAll('.star-btn');
 const feedbackText      = document.getElementById('feedback-text');
 const submitFeedbackBtn = document.getElementById('submit-feedback-btn');
@@ -104,6 +107,10 @@ function startChat() {
 }
 
 // ── Close button logic ─────────────────────────────────────────────────────────
+minimizeBtn.addEventListener('click', () => {
+  chatWidget.style.display = 'none';
+});
+
 closeBtn.addEventListener('click', () => {
   if (currentScreen === 'chat') {
     // Show feedback instead of closing
@@ -111,10 +118,10 @@ closeBtn.addEventListener('click', () => {
     resetFeedback();
   } else if (currentScreen === 'feedback') {
     // Dismiss — actually close widget
-    document.getElementById('chat-widget').style.display = 'none';
+    chatWidget.style.display = 'none';
   } else {
     // login / thankyou → just close
-    document.getElementById('chat-widget').style.display = 'none';
+    chatWidget.style.display = 'none';
   }
 });
 
@@ -149,7 +156,7 @@ submitFeedbackBtn.addEventListener('click', () => {
 
   // Auto-close after 3 s
   setTimeout(() => {
-    document.getElementById('chat-widget').style.display = 'none';
+    chatWidget.style.display = 'none';
   }, 3000);
 });
 
