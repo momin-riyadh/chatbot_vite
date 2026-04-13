@@ -1,0 +1,25 @@
+<div id="screen-feedback" class="hidden flex-1 flex flex-col bg-white px-6 pt-8 pb-4 screen-panel">
+    <h2 class="text-base font-bold text-gray-800 mb-2 text-center leading-snug">
+        How was your chat experience?
+    </h2>
+
+    <p class="text-xs text-gray-400 text-center mb-5">
+        Poor (1-3) &nbsp;&nbsp; Satisfactory (4) &nbsp;&nbsp; Excellent (5)
+    </p>
+
+    <div id="star-row" class="flex justify-center gap-3 mb-6">
+        <button class="star-btn" data-val="1" aria-label="1 star">★</button>
+        <button class="star-btn" data-val="2" aria-label="2 stars">★</button>
+        <button class="star-btn" data-val="3" aria-label="3 stars">★</button>
+        <button class="star-btn" data-val="4" aria-label="4 stars">★</button>
+        <button class="star-btn" data-val="5" aria-label="5 stars">★</button>
+    </div>
+
+    <textarea id="feedback-text" rows="5" placeholder="Share your feedback (optional)"
+              class="feedback-textarea mb-5"></textarea>
+
+    <button id="submit-feedback-btn" class="red-full-btn mb-3">Submit Feedback</button>
+    <button id="continue-chat-btn" class="red-full-btn">Continue Chat</button>
+
+    <div class="flex-1"></div>
+</div>
