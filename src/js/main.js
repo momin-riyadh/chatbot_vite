@@ -1,17 +1,20 @@
 // ── gPlex Webchat · main.js ──────────────────────────────────────────────────
 // Vite 8+ / Tailwind CSS v4 | Login → Chat → Feedback → Thank You
 
+import logoUrl from '../assets/images/logo.png';
+import userAvatarUrl from '../assets/images/user.png';
+
 // ── Avatars ───────────────────────────────────────────────────────────────────
 const BOT_AVATAR = `
   <div class="flex items-center justify-center w-9 h-9 rounded-full shrink-0 shadow-md"
        style="background:#ffffff;">
-    <img src="/src/assets/images/logo.png" alt="Bot" class="w-7 h-7 object-contain">
+    <img src="${logoUrl}" alt="Bot" class="w-7 h-7 object-contain">
   </div>`;
 
 const USER_AVATAR = `
   <div class="flex items-center justify-center w-9 h-9 rounded-full shrink-0 shadow-md overflow-hidden"
        style="background:#e5e7eb;">
-    <img src="/src/assets/images/user.png" alt="User" class="w-full h-full object-cover">
+    <img src="${userAvatarUrl}" alt="User" class="w-full h-full object-cover">
   </div>`;
 
 
