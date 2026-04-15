@@ -192,14 +192,27 @@ function scrollBottom() {
 }
 
 /**
+ * Human-readable local date/time for bubbles. `time[datetime]` uses ISO-8601 (UTC) for APIs, analytics, and tests.
+ * Format: YYYY-MM-DD HH:mm:ss (24h, local timezone).
+ *
+ * @param {Date} [date]
+ */
+function formatChatTimestamp(date = new Date()) {
+  const d = date instanceof Date ? date : new Date(date);
+  const p = (n) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+}
+
+/**
  * Renders a chat bubble. For the user role, `attachments` may contain image previews (`previewUrl` data URLs)
  * for display only; they are not automatically uploaded anywhere.
  *
  * @param {'assistant'|'user'} role
  * @param {string} text
  * @param {Array<{ name: string, previewUrl: string }>} [attachments]
+ * @param {Date} [at] — wall time for this message (defaults to now); pass when replaying history from a backend.
  */
-function appendMessage(role, text, attachments = []) {
+function appendMessage(role, text, attachments = [], at = new Date()) {
   const isBot = role === 'assistant';
   const row   = document.createElement('div');
   row.className = `flex items-end gap-2 ${isBot ? '' : 'flex-row justify-end'} bubble-in-${isBot ? 'left' : 'right'}`;
@@ -236,6 +249,12 @@ function appendMessage(role, text, attachments = []) {
     bubble.appendChild(imageGrid);
   }
 
+  const timeEl = document.createElement('time');
+  timeEl.dateTime = at.toISOString();
+  timeEl.className = `block text-[10px] mt-2 tabular-nums tracking-tight ${isBot ? 'text-gray-400' : 'text-white/75'}`;
+  timeEl.textContent = formatChatTimestamp(at);
+  bubble.appendChild(timeEl);
+
   if (isBot) {
     row.innerHTML = BOT_AVATAR;
     row.appendChild(bubble);
@@ -264,7 +283,7 @@ function showAttachmentPreview() {
   attachmentPreview.classList.add('inline-flex');
 }
 
-/** Clears pending files and hides the preview panel. Safe to call after send or on cancel. */
+/** Clears pending files and hides the preview panel. Safe to call after sending or on cancel. */
 function clearAttachments() {
   selectedAttachments = [];
   if (attachmentInput) attachmentInput.value = '';
