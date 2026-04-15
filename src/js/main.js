@@ -50,9 +50,7 @@ const sendBtn           = document.getElementById('send-btn');
 const attachmentBtn     = document.getElementById('attachment-btn');
 const attachmentInput   = document.getElementById('attachment-input');
 const attachmentPreview = document.getElementById('attachment-preview');
-const attachmentThumb   = document.getElementById('attachment-thumb');
-const attachmentName    = document.getElementById('attachment-name');
-const attachmentRemoveBtn = document.getElementById('attachment-remove-btn');
+const attachmentThumbs  = document.getElementById('attachment-thumbs');
 const closeBtn          = document.getElementById('close-btn');
 const minimizeBtn       = document.getElementById('minimize-btn');
 const chatWidget        = document.getElementById('chat-widget');
@@ -60,7 +58,7 @@ const starBtns          = document.querySelectorAll('.star-btn');
 const feedbackText      = document.getElementById('feedback-text');
 const submitFeedbackBtn = document.getElementById('submit-feedback-btn');
 const continueChatBtn   = document.getElementById('continue-chat-btn');
-let selectedAttachment  = null; // { file, isImage, previewUrl }
+let selectedAttachments = []; // [{ id, file, name, type, size, previewUrl }]
 
 // ── Screen switcher ────────────────────────────────────────────────────────────
 function showScreen(name) {
@@ -181,7 +179,7 @@ function scrollBottom() {
   requestAnimationFrame(() => { chatBody.scrollTop = chatBody.scrollHeight; });
 }
 
-function appendMessage(role, text, attachment = null) {
+function appendMessage(role, text, attachments = []) {
   const isBot = role === 'assistant';
   const row   = document.createElement('div');
   row.className = `flex items-end gap-2 ${isBot ? '' : 'flex-row justify-end'} bubble-in-${isBot ? 'left' : 'right'}`;
@@ -199,25 +197,23 @@ function appendMessage(role, text, attachment = null) {
     bubble.appendChild(textEl);
   }
 
-  if (attachment) {
+  if (attachments.length) {
     if (text) {
       const spacer = document.createElement('div');
       spacer.className = 'h-2';
       bubble.appendChild(spacer);
     }
 
-    if (attachment.isImage && attachment.previewUrl) {
+    const imageGrid = document.createElement('div');
+    imageGrid.className = `grid gap-1 ${attachments.length === 1 ? 'grid-cols-1' : 'grid-cols-2'} max-w-[220px]`;
+    attachments.forEach((attachment) => {
       const img = document.createElement('img');
       img.src = attachment.previewUrl;
       img.alt = attachment.name || 'Attachment';
-      img.className = 'max-w-[180px] max-h-[180px] rounded-lg border border-white/30 object-cover';
-      bubble.appendChild(img);
-    }
-
-    const meta = document.createElement('div');
-    meta.className = 'text-[11px] mt-1 opacity-85 break-all';
-    meta.textContent = attachment.name || 'Attached file';
-    bubble.appendChild(meta);
+      img.className = `${attachments.length === 1 ? 'w-[180px] h-[180px]' : 'w-[106px] h-[106px]'} rounded-lg border border-white/30 object-cover`;
+      imageGrid.appendChild(img);
+    });
+    bubble.appendChild(imageGrid);
   }
 
   if (isBot) {
@@ -231,34 +227,39 @@ function appendMessage(role, text, attachment = null) {
   scrollBottom();
 }
 
-function showAttachmentPreview(file) {
-  if (!attachmentPreview || !attachmentName) return;
-  attachmentName.textContent = `${file.name} (${Math.ceil(file.size / 1024)} KB)`;
-  if (attachmentThumb) {
-    if (selectedAttachment?.isImage && selectedAttachment.previewUrl) {
-      attachmentThumb.src = selectedAttachment.previewUrl;
-      attachmentThumb.classList.remove('hidden');
-    } else {
-      attachmentThumb.src = '';
-      attachmentThumb.classList.add('hidden');
-    }
-  }
+function showAttachmentPreview() {
+  if (!attachmentPreview || !attachmentThumbs) return;
+  attachmentThumbs.innerHTML = '';
+  selectedAttachments.forEach((attachment) => {
+    const thumbWrap = document.createElement('div');
+    thumbWrap.className = 'relative w-12 h-12 shrink-0';
+    thumbWrap.innerHTML = `
+      <img src="${attachment.previewUrl}" alt="${attachment.name}" class="w-12 h-12 rounded-md object-cover border border-amber-200">
+      <button type="button" data-attachment-id="${attachment.id}" class="absolute cursor-pointer top-0 right-0 w-4 h-4 rounded-full bg-black/70 text-white text-[10px] leading-none">x</button>
+    `;
+    attachmentThumbs.appendChild(thumbWrap);
+  });
   attachmentPreview.classList.remove('hidden');
   attachmentPreview.classList.add('inline-flex');
 }
 
-function clearAttachment() {
-  selectedAttachment = null;
+function clearAttachments() {
+  selectedAttachments = [];
   if (attachmentInput) attachmentInput.value = '';
-  if (attachmentThumb) {
-    attachmentThumb.src = '';
-    attachmentThumb.classList.add('hidden');
-  }
+  if (attachmentThumbs) attachmentThumbs.innerHTML = '';
   if (attachmentPreview) {
     attachmentPreview.classList.add('hidden');
     attachmentPreview.classList.remove('inline-flex');
   }
-  if (attachmentName) attachmentName.textContent = '';
+}
+
+function removeAttachment(attachmentId) {
+  selectedAttachments = selectedAttachments.filter((attachment) => attachment.id !== attachmentId);
+  if (!selectedAttachments.length) {
+    clearAttachments();
+    return;
+  }
+  showAttachmentPreview();
 }
 
 function readFileAsDataUrl(file) {
@@ -284,10 +285,11 @@ function showTyping() {
 function hideTyping() { document.getElementById('typing-indicator')?.remove(); }
 
 // ── Claude API ─────────────────────────────────────────────────────────────────
-async function callClaude(userMessage, attachment = null) {
-  const messageContent = attachment
-    ? `${userMessage || 'User sent an attachment.'}\n\n[Attachment]\nName: ${attachment.name}\nType: ${attachment.type || 'unknown'}\nSize: ${attachment.size} bytes`
-    : userMessage;
+async function callClaude(userMessage, attachments = []) {
+  const attachmentBlock = attachments.length
+    ? `\n\n[Attachments]\n${attachments.map((attachment, idx) => `${idx + 1}. Name: ${attachment.name}, Type: ${attachment.type || 'unknown'}, Size: ${attachment.size} bytes`).join('\n')}`
+    : '';
+  const messageContent = `${userMessage || (attachments.length ? 'User shared images.' : '')}${attachmentBlock}`.trim();
   history.push({ role: 'user', content: messageContent });
   const resp = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -311,28 +313,23 @@ async function callClaude(userMessage, attachment = null) {
 // ── Send flow ──────────────────────────────────────────────────────────────────
 async function sendMessage() {
   const text = msgInput.value.trim();
-  const fileState = selectedAttachment;
-  const file = fileState?.file || null;
-  if (!text && !file) return;
+  const attachments = [...selectedAttachments];
+  if (!text && !attachments.length) return;
   msgInput.value = '';
   msgInput.disabled = true;
   sendBtn.disabled  = true;
   if (attachmentBtn) attachmentBtn.disabled = true;
 
-  if (file) {
-    appendMessage('user', text || '', {
-      name: file.name,
-      isImage: fileState?.isImage,
-      previewUrl: fileState?.previewUrl || '',
-    });
+  if (attachments.length) {
+    appendMessage('user', text || '', attachments);
   } else {
     appendMessage('user', text);
   }
-  clearAttachment();
+  clearAttachments();
   showTyping();
   try {
     hideTyping();
-    appendMessage('assistant', await callClaude(text, file));
+    appendMessage('assistant', await callClaude(text, attachments));
   } catch (err) {
     hideTyping();
     appendMessage('assistant', '⚠️ Something went wrong. Please try again.');
@@ -355,26 +352,38 @@ msgInput.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
 });
 attachmentBtn?.addEventListener('click', () => attachmentInput?.click());
-attachmentInput?.addEventListener('change', () => {
-  const file = attachmentInput.files?.[0];
-  if (!file) {
-    clearAttachment();
+attachmentInput?.addEventListener('change', async () => {
+  const files = Array.from(attachmentInput.files || []);
+  if (!files.length) {
     return;
   }
-  const isImage = file.type.startsWith('image/');
-  if (isImage) {
-    readFileAsDataUrl(file)
-      .then((previewUrl) => {
-        selectedAttachment = { file, isImage: true, previewUrl };
-        showAttachmentPreview(file);
-      })
-      .catch(() => {
-        selectedAttachment = { file, isImage: true, previewUrl: '' };
-        showAttachmentPreview(file);
-      });
-    return;
+  const existingIds = new Set(selectedAttachments.map((attachment) => attachment.id));
+  const previews = await Promise.all(files.map(async (file) => {
+    try {
+      const previewUrl = await readFileAsDataUrl(file);
+      return {
+        id: `${file.name}-${file.size}-${file.lastModified}`,
+        file,
+        name: file.name,
+        type: file.type,
+        size: file.size,
+        previewUrl,
+      };
+    } catch {
+      return null;
+    }
+  }));
+  previews.forEach((preview) => {
+    if (preview && !existingIds.has(preview.id)) selectedAttachments.push(preview);
+  });
+  if (selectedAttachments.length) {
+    showAttachmentPreview();
   }
-  selectedAttachment = { file, isImage: false, previewUrl: '' };
-  showAttachmentPreview(file);
+  attachmentInput.value = '';
 });
-attachmentRemoveBtn?.addEventListener('click', clearAttachment);
+attachmentThumbs?.addEventListener('click', (e) => {
+  const target = e.target;
+  if (!(target instanceof HTMLElement)) return;
+  const attachmentId = target.dataset.attachmentId;
+  if (attachmentId) removeAttachment(attachmentId);
+});
