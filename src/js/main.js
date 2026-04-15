@@ -47,6 +47,12 @@ const startChatBtn      = document.getElementById('start-chat-btn');
 const chatBody          = document.getElementById('chat-body');
 const msgInput          = document.getElementById('msg-input');
 const sendBtn           = document.getElementById('send-btn');
+const attachmentBtn     = document.getElementById('attachment-btn');
+const attachmentInput   = document.getElementById('attachment-input');
+const attachmentPreview = document.getElementById('attachment-preview');
+const attachmentThumb   = document.getElementById('attachment-thumb');
+const attachmentName    = document.getElementById('attachment-name');
+const attachmentRemoveBtn = document.getElementById('attachment-remove-btn');
 const closeBtn          = document.getElementById('close-btn');
 const minimizeBtn       = document.getElementById('minimize-btn');
 const chatWidget        = document.getElementById('chat-widget');
@@ -54,6 +60,7 @@ const starBtns          = document.querySelectorAll('.star-btn');
 const feedbackText      = document.getElementById('feedback-text');
 const submitFeedbackBtn = document.getElementById('submit-feedback-btn');
 const continueChatBtn   = document.getElementById('continue-chat-btn');
+let selectedAttachment  = null; // { file, isImage, previewUrl }
 
 // ── Screen switcher ────────────────────────────────────────────────────────────
 function showScreen(name) {
@@ -174,7 +181,7 @@ function scrollBottom() {
   requestAnimationFrame(() => { chatBody.scrollTop = chatBody.scrollHeight; });
 }
 
-function appendMessage(role, text) {
+function appendMessage(role, text, attachment = null) {
   const isBot = role === 'assistant';
   const row   = document.createElement('div');
   row.className = `flex items-end gap-2 ${isBot ? '' : 'flex-row justify-end'} bubble-in-${isBot ? 'left' : 'right'}`;
@@ -184,7 +191,34 @@ function appendMessage(role, text) {
   bubble.style.cssText = isBot
     ? 'background:#ffffff; color:#374151; border-bottom-left-radius:4px;'
     : 'background:var(--brand); color:#fff; border-bottom-right-radius:4px;';
-  bubble.textContent = text;
+
+  if (text) {
+    const textEl = document.createElement('div');
+    textEl.className = 'whitespace-pre-wrap break-words';
+    textEl.textContent = text;
+    bubble.appendChild(textEl);
+  }
+
+  if (attachment) {
+    if (text) {
+      const spacer = document.createElement('div');
+      spacer.className = 'h-2';
+      bubble.appendChild(spacer);
+    }
+
+    if (attachment.isImage && attachment.previewUrl) {
+      const img = document.createElement('img');
+      img.src = attachment.previewUrl;
+      img.alt = attachment.name || 'Attachment';
+      img.className = 'max-w-[180px] max-h-[180px] rounded-lg border border-white/30 object-cover';
+      bubble.appendChild(img);
+    }
+
+    const meta = document.createElement('div');
+    meta.className = 'text-[11px] mt-1 opacity-85 break-all';
+    meta.textContent = attachment.name || 'Attached file';
+    bubble.appendChild(meta);
+  }
 
   if (isBot) {
     row.innerHTML = BOT_AVATAR;
@@ -195,6 +229,45 @@ function appendMessage(role, text) {
 
   chatBody.appendChild(row);
   scrollBottom();
+}
+
+function showAttachmentPreview(file) {
+  if (!attachmentPreview || !attachmentName) return;
+  attachmentName.textContent = `${file.name} (${Math.ceil(file.size / 1024)} KB)`;
+  if (attachmentThumb) {
+    if (selectedAttachment?.isImage && selectedAttachment.previewUrl) {
+      attachmentThumb.src = selectedAttachment.previewUrl;
+      attachmentThumb.classList.remove('hidden');
+    } else {
+      attachmentThumb.src = '';
+      attachmentThumb.classList.add('hidden');
+    }
+  }
+  attachmentPreview.classList.remove('hidden');
+  attachmentPreview.classList.add('inline-flex');
+}
+
+function clearAttachment() {
+  selectedAttachment = null;
+  if (attachmentInput) attachmentInput.value = '';
+  if (attachmentThumb) {
+    attachmentThumb.src = '';
+    attachmentThumb.classList.add('hidden');
+  }
+  if (attachmentPreview) {
+    attachmentPreview.classList.add('hidden');
+    attachmentPreview.classList.remove('inline-flex');
+  }
+  if (attachmentName) attachmentName.textContent = '';
+}
+
+function readFileAsDataUrl(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(new Error('Failed to read file preview'));
+    reader.readAsDataURL(file);
+  });
 }
 
 function showTyping() {
@@ -211,8 +284,11 @@ function showTyping() {
 function hideTyping() { document.getElementById('typing-indicator')?.remove(); }
 
 // ── Claude API ─────────────────────────────────────────────────────────────────
-async function callClaude(userMessage) {
-  history.push({ role: 'user', content: userMessage });
+async function callClaude(userMessage, attachment = null) {
+  const messageContent = attachment
+    ? `${userMessage || 'User sent an attachment.'}\n\n[Attachment]\nName: ${attachment.name}\nType: ${attachment.type || 'unknown'}\nSize: ${attachment.size} bytes`
+    : userMessage;
+  history.push({ role: 'user', content: messageContent });
   const resp = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -235,15 +311,28 @@ async function callClaude(userMessage) {
 // ── Send flow ──────────────────────────────────────────────────────────────────
 async function sendMessage() {
   const text = msgInput.value.trim();
-  if (!text) return;
+  const fileState = selectedAttachment;
+  const file = fileState?.file || null;
+  if (!text && !file) return;
   msgInput.value = '';
   msgInput.disabled = true;
   sendBtn.disabled  = true;
-  appendMessage('user', text);
+  if (attachmentBtn) attachmentBtn.disabled = true;
+
+  if (file) {
+    appendMessage('user', text || '', {
+      name: file.name,
+      isImage: fileState?.isImage,
+      previewUrl: fileState?.previewUrl || '',
+    });
+  } else {
+    appendMessage('user', text);
+  }
+  clearAttachment();
   showTyping();
   try {
     hideTyping();
-    appendMessage('assistant', await callClaude(text));
+    appendMessage('assistant', await callClaude(text, file));
   } catch (err) {
     hideTyping();
     appendMessage('assistant', '⚠️ Something went wrong. Please try again.');
@@ -251,6 +340,7 @@ async function sendMessage() {
   } finally {
     msgInput.disabled = false;
     sendBtn.disabled  = false;
+    if (attachmentBtn) attachmentBtn.disabled = false;
     msgInput.focus();
   }
 }
@@ -264,3 +354,27 @@ sendBtn.addEventListener('click', sendMessage);
 msgInput.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
 });
+attachmentBtn?.addEventListener('click', () => attachmentInput?.click());
+attachmentInput?.addEventListener('change', () => {
+  const file = attachmentInput.files?.[0];
+  if (!file) {
+    clearAttachment();
+    return;
+  }
+  const isImage = file.type.startsWith('image/');
+  if (isImage) {
+    readFileAsDataUrl(file)
+      .then((previewUrl) => {
+        selectedAttachment = { file, isImage: true, previewUrl };
+        showAttachmentPreview(file);
+      })
+      .catch(() => {
+        selectedAttachment = { file, isImage: true, previewUrl: '' };
+        showAttachmentPreview(file);
+      });
+    return;
+  }
+  selectedAttachment = { file, isImage: false, previewUrl: '' };
+  showAttachmentPreview(file);
+});
+attachmentRemoveBtn?.addEventListener('click', clearAttachment);
