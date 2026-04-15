@@ -20,6 +20,17 @@ body {
   justify-content: center;
 }
 
+/* ── Chat widget shell (width toggled in main.js) ─────────── */
+#chat-widget {
+  transition: width 0.38s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #chat-widget {
+    transition-duration: 0.05s;
+  }
+}
+
 /* ── Dotted background for chat ──────────────────────────── */
 .dot-bg {
   background-color: #f9fafb;

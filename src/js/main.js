@@ -54,6 +54,7 @@ const attachmentThumbs  = document.getElementById('attachment-thumbs');
 const closeBtn          = document.getElementById('close-btn');
 const minimizeBtn       = document.getElementById('minimize-btn');
 const chatWidget        = document.getElementById('chat-widget');
+const expandWidgetBtn   = document.getElementById('expand-widget-btn');
 const starBtns          = document.querySelectorAll('.star-btn');
 const feedbackText      = document.getElementById('feedback-text');
 const submitFeedbackBtn = document.getElementById('submit-feedback-btn');
@@ -71,6 +72,17 @@ const continueChatBtn   = document.getElementById('continue-chat-btn');
  * @type {Array<{ id: string, file: File, name: string, type: string, size: number, previewUrl: string }>}
  */
 let selectedAttachments = [];
+
+/** Pixels: parsed once from `#chat-widget` inline width (see index.html). Expanded state uses `× 1.5`. */
+let widgetBaseWidthPx = (() => {
+  if (!chatWidget) return 380;
+  const w = chatWidget.style.width || '';
+  const m = /^(\d+(?:\.\d+)?)px$/.exec(w.trim());
+  if (m) return Math.round(parseFloat(m[1]));
+  const px = parseFloat(getComputedStyle(chatWidget).width);
+  return Number.isFinite(px) ? Math.round(px) : 380;
+})();
+let widgetWidthExpanded = false;
 
 // ── Screen switcher ────────────────────────────────────────────────────────────
 function showScreen(name) {
@@ -125,6 +137,20 @@ function startChat() {
   );
   msgInput.focus();
 }
+
+function applyWidgetWidthExpanded(expanded) {
+  if (!chatWidget) return;
+  widgetWidthExpanded = expanded;
+  chatWidget.style.width = `${widgetBaseWidthPx * (expanded ? 1.5 : 1)}px`;
+  if (expandWidgetBtn) {
+    expandWidgetBtn.setAttribute('aria-expanded', String(expanded));
+    expandWidgetBtn.setAttribute('aria-label', expanded ? 'Shrink chat to default width' : 'Expand chat width');
+    expandWidgetBtn.querySelector('.expand-icon-out')?.classList.toggle('hidden', expanded);
+    expandWidgetBtn.querySelector('.expand-icon-in')?.classList.toggle('hidden', !expanded);
+  }
+}
+
+expandWidgetBtn?.addEventListener('click', () => applyWidgetWidthExpanded(!widgetWidthExpanded));
 
 // ── Close button logic ─────────────────────────────────────────────────────────
 minimizeBtn.addEventListener('click', () => {
