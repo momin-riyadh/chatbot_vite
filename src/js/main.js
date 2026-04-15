@@ -58,7 +58,19 @@ const starBtns          = document.querySelectorAll('.star-btn');
 const feedbackText      = document.getElementById('feedback-text');
 const submitFeedbackBtn = document.getElementById('submit-feedback-btn');
 const continueChatBtn   = document.getElementById('continue-chat-btn');
-let selectedAttachments = []; // [{ id, file, name, type, size, previewUrl }]
+
+/**
+ * Pending images before send. Used for UI preview and for building the outbound user turn.
+ *
+ * Shape (each item):
+ * - id: string — stable client key (name + size + lastModified); not a server id.
+ * - file: File — native File object; use for FormData if you POST multipart to your backend.
+ * - name, type, size: from File — mirror these in your API/metadata.
+ * - previewUrl: string (data URL) — browser-only; large strings; do not persist or send to LLM as base64 unless you intentionally support vision/multipart. Current callClaude() only sends text metadata.
+ *
+ * @type {Array<{ id: string, file: File, name: string, type: string, size: number, previewUrl: string }>}
+ */
+let selectedAttachments = [];
 
 // ── Screen switcher ────────────────────────────────────────────────────────────
 function showScreen(name) {
@@ -179,6 +191,14 @@ function scrollBottom() {
   requestAnimationFrame(() => { chatBody.scrollTop = chatBody.scrollHeight; });
 }
 
+/**
+ * Renders a chat bubble. For the user role, `attachments` may contain image previews (`previewUrl` data URLs)
+ * for display only; they are not automatically uploaded anywhere.
+ *
+ * @param {'assistant'|'user'} role
+ * @param {string} text
+ * @param {Array<{ name: string, previewUrl: string }>} [attachments]
+ */
 function appendMessage(role, text, attachments = []) {
   const isBot = role === 'assistant';
   const row   = document.createElement('div');
@@ -227,6 +247,7 @@ function appendMessage(role, text, attachments = []) {
   scrollBottom();
 }
 
+/** Rebuilds the compose-area thumbnail grid from `selectedAttachments` (event: remove uses delegation on #attachment-thumbs). */
 function showAttachmentPreview() {
   if (!attachmentPreview || !attachmentThumbs) return;
   attachmentThumbs.innerHTML = '';
@@ -243,6 +264,7 @@ function showAttachmentPreview() {
   attachmentPreview.classList.add('inline-flex');
 }
 
+/** Clears pending files and hides the preview panel. Safe to call after send or on cancel. */
 function clearAttachments() {
   selectedAttachments = [];
   if (attachmentInput) attachmentInput.value = '';
@@ -262,6 +284,7 @@ function removeAttachment(attachmentId) {
   showAttachmentPreview();
 }
 
+/** Client-side preview only. Backend: prefer streams, object storage URLs, or multipart — not inline base64 in chat history. */
 function readFileAsDataUrl(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -285,6 +308,18 @@ function showTyping() {
 function hideTyping() { document.getElementById('typing-indicator')?.remove(); }
 
 // ── Claude API ─────────────────────────────────────────────────────────────────
+/**
+ * Sends the conversation to Anthropic. Attachments are appended as plain-text metadata only (filename, MIME, size).
+ *
+ * Backend integration notes:
+ * - Replace this with your own route that accepts multipart/form-data or signed upload URLs, then store file refs.
+ * - If you need true image understanding, use the provider’s vision/content blocks or your server-side pipeline;
+ *   do not rely on base64 in `history` unless you control limits and costs.
+ * - `history` is the full message array posted as JSON; keep attachment summaries short if you add many images.
+ *
+ * @param {string} userMessage
+ * @param {Array<{ name: string, type: string, size: number }>} attachments
+ */
 async function callClaude(userMessage, attachments = []) {
   const attachmentBlock = attachments.length
     ? `\n\n[Attachments]\n${attachments.map((attachment, idx) => `${idx + 1}. Name: ${attachment.name}, Type: ${attachment.type || 'unknown'}, Size: ${attachment.size} bytes`).join('\n')}`
@@ -311,6 +346,11 @@ async function callClaude(userMessage, attachments = []) {
 }
 
 // ── Send flow ──────────────────────────────────────────────────────────────────
+/**
+ * User send path: snapshot `selectedAttachments` before clearing so the bubble and API both see the same list.
+ * Hook for backend: after `appendMessage('user', ...)`, upload `attachments[].file` (or your FormData) to your API,
+ * then call the assistant with stored attachment ids/URLs instead of embedding data URLs in prompts.
+ */
 async function sendMessage() {
   const text = msgInput.value.trim();
   const attachments = [...selectedAttachments];
@@ -352,6 +392,7 @@ msgInput.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
 });
 attachmentBtn?.addEventListener('click', () => attachmentInput?.click());
+// Multiple picks: merge new files, skip duplicates by `id`, reset input so the same file can be re-selected later.
 attachmentInput?.addEventListener('change', async () => {
   const files = Array.from(attachmentInput.files || []);
   if (!files.length) {
