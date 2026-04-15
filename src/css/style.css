@@ -65,6 +65,8 @@ body {
   box-shadow: 0 0 0 2px rgba(22,163,74,0.12);
 }
 .login-input.error { border-color: #ef4444; }
+.iti { width: 100%; }
+.iti .iti__search-input { color: #374151; }
 
 /* ── Start Chat button ───────────────────────────────────── */
 .start-btn {

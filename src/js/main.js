@@ -3,6 +3,8 @@
 
 import logoUrl from '../assets/images/logo.png';
 import userAvatarUrl from '../assets/images/user.png';
+import intlTelInput from 'intl-tel-input';
+import 'intl-tel-input/styles';
 
 // ── Avatars ───────────────────────────────────────────────────────────────────
 const BOT_AVATAR = `
@@ -59,6 +61,16 @@ const starBtns          = document.querySelectorAll('.star-btn');
 const feedbackText      = document.getElementById('feedback-text');
 const submitFeedbackBtn = document.getElementById('submit-feedback-btn');
 const continueChatBtn   = document.getElementById('continue-chat-btn');
+const phoneIti = loginPhoneEl
+  ? intlTelInput(loginPhoneEl, {
+      initialCountry: 'bd',
+      preferredCountries: ['bd', 'in', 'pk', 'us', 'gb'],
+      separateDialCode: true,
+      strictMode: true,
+      formatAsYouType: true,
+      loadUtils: () => import('intl-tel-input/utils'),
+    })
+  : null;
 
 /**
  * Pending images before send. Used for UI preview and for building the outbound user turn.
@@ -111,9 +123,14 @@ function validate() {
     showError('Please enter your name.');
     return false;
   }
-  if (!/^01[3-9]\d{8}$/.test(phone)) {
+  if (!phone) {
     loginPhoneEl.classList.add('error');
-    showError('Enter a valid BD phone number (e.g. 01712345678).');
+    showError('Please enter your phone number.');
+    return false;
+  }
+  if (!phoneIti || !phoneIti.isValidNumber()) {
+    loginPhoneEl.classList.add('error');
+    showError('Enter a valid international phone number.');
     return false;
   }
   return true;
@@ -127,7 +144,7 @@ function showError(msg) {
 function startChat() {
   if (!validate()) return;
   userName     = loginNameEl.value.trim();
-  userPhone    = loginPhoneEl.value.trim();
+  userPhone    = phoneIti?.getNumber() || loginPhoneEl.value.trim();
   userInitials = userName.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() || 'U';
 
   showScreen('chat');
