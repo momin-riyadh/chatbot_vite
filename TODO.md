@@ -4,6 +4,6 @@
 - Local API
 - 100% test coverage
 - Close,
-- Minimized
+- Minimized With ChatHistory
 - Expand
 - 
