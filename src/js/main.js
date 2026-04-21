@@ -418,6 +418,7 @@ async function sendMessage() {
   const attachments = [...selectedAttachments];
   if (!text && !attachments.length) return;
   msgInput.value = '';
+  msgInput.style.height = 'auto';
   msgInput.disabled = true;
   sendBtn.disabled  = true;
   if (attachmentBtn) attachmentBtn.disabled = true;
@@ -452,6 +453,10 @@ startChatBtn.addEventListener('click', startChat);
 sendBtn.addEventListener('click', sendMessage);
 msgInput.addEventListener('keydown', e => {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+});
+msgInput.addEventListener('input', () => {
+  msgInput.style.height = 'auto';
+  msgInput.style.height = msgInput.scrollHeight + 'px';
 });
 attachmentBtn?.addEventListener('click', () => attachmentInput?.click());
 // Multiple picks: merge new files, skip duplicates by `id`, reset input so the same file can be re-selected later.
