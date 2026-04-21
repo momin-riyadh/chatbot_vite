@@ -141,13 +141,29 @@ function showError(msg) {
 }
 
 // ── Login → Chat ───────────────────────────────────────────────────────────────
-function startChat() {
+async function startChat() {
   if (!validate()) return;
   userName     = loginNameEl.value.trim();
   userPhone    = phoneIti?.getNumber() || loginPhoneEl.value.trim();
   userInitials = userName.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase() || 'U';
 
   showScreen('chat');
+
+  try {
+    const resp = await fetch(`http://localhost:3000/api/history?phone=${encodeURIComponent(userPhone)}`);
+    if (resp.ok) {
+      const { history: savedHistory } = await resp.json();
+      if (savedHistory && savedHistory.length) {
+        savedHistory.forEach(msg => {
+          history.push(msg);
+          appendMessage(msg.role === 'user' ? 'user' : 'assistant', msg.content);
+        });
+        msgInput.focus();
+        return;
+      }
+    }
+  } catch { /* server not running — fall through to greeting */ }
+
   appendMessage(
     'assistant',
     `Hi ${userName}! 👋 Greetings from Apex Footwear Limited. How may I help you today? For any inquiries you may also contact our Customer Care at 09617223344 (Service hours: 10:00 AM – 8:00 PM).`
@@ -371,7 +387,7 @@ function hideTyping() { document.getElementById('typing-indicator')?.remove(); }
 
 // ── Local API ──────────────────────────────────────────────────────────────────
 /**
- * Sends the conversation to local API server. Attachments metadata included in request.
+ * Sends the conversation to the local API server. Attachment metadata is included in the request.
  *
  * @param {string} userMessage
  * @param {Array<{ name: string, type: string, size: number }>} attachments
