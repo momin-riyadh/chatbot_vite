@@ -369,40 +369,33 @@ function showTyping() {
 }
 function hideTyping() { document.getElementById('typing-indicator')?.remove(); }
 
-// ── Claude API ─────────────────────────────────────────────────────────────────
+// ── Local API ──────────────────────────────────────────────────────────────────
 /**
- * Sends the conversation to Anthropic. Attachments are appended as plain-text metadata only (filename, MIME, size).
- *
- * Backend integration notes:
- * - Replace this with your own route that accepts multipart/form-data or signed upload URLs, then store file refs.
- * - If you need true image understanding, use the provider’s vision/content blocks or your server-side pipeline;
- *   do not rely on base64 in `history` unless you control limits and costs.
- * - `history` is the full message array posted as JSON; keep attachment summaries short if you add many images.
+ * Sends the conversation to local API server. Attachments metadata included in request.
  *
  * @param {string} userMessage
  * @param {Array<{ name: string, type: string, size: number }>} attachments
  */
-async function callClaude(userMessage, attachments = []) {
-  const attachmentBlock = attachments.length
-    ? `\n\n[Attachments]\n${attachments.map((attachment, idx) => `${idx + 1}. Name: ${attachment.name}, Type: ${attachment.type || 'unknown'}, Size: ${attachment.size} bytes`).join('\n')}`
-    : '';
-  const messageContent = `${userMessage || (attachments.length ? 'User shared images.' : '')}${attachmentBlock}`.trim();
+async function callApi(userMessage, attachments = []) {
+  const attachmentMeta = attachments.map(a => ({ name: a.name, type: a.type, size: a.size }));
+  const messageContent = userMessage || (attachments.length ? 'User shared images.' : '');
   history.push({ role: 'user', content: messageContent });
-  const resp = await fetch('https://api.anthropic.com/v1/messages', {
+
+  const resp = await fetch('http://localhost:3000/api/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1000,
-      system: `You are a helpful customer service assistant for Apex Footwear Limited via gPlex Webchat.
-               Customer name: ${userName}, phone: ${userPhone}.
-               Be friendly and concise. Customer Care: 09617223344 (10 AM–8 PM).`,
-      messages: history,
+      userName,
+      userPhone,
+      message: messageContent,
+      attachments: attachmentMeta,
+      history,
     }),
   });
+
   if (!resp.ok) throw new Error(`API ${resp.status}`);
-  const data  = await resp.json();
-  const reply = data.content?.find(b => b.type === 'text')?.text || 'Sorry, I could not respond right now.';
+  const data = await resp.json();
+  const reply = data.reply || 'Sorry, I could not respond right now.';
   history.push({ role: 'assistant', content: reply });
   return reply;
 }
@@ -431,8 +424,9 @@ async function sendMessage() {
   clearAttachments();
   showTyping();
   try {
+    const reply = await callApi(text, attachments);
     hideTyping();
-    appendMessage('assistant', await callClaude(text, attachments));
+    appendMessage('assistant', reply);
   } catch (err) {
     hideTyping();
     appendMessage('assistant', '⚠️ Something went wrong. Please try again.');
