@@ -505,3 +505,58 @@ attachmentThumbs?.addEventListener('click', (e) => {
   const attachmentId = target.dataset.attachmentId;
   if (attachmentId) removeAttachment(attachmentId);
 });
+
+// ── Clipboard paste support ────────────────────────────────────────────────────
+/**
+ * Handles clipboard paste events to support pasting images directly into the textarea.
+ * Extracts image files from clipboard data and adds them to the attachment preview.
+ */
+msgInput?.addEventListener('paste', async (e) => {
+  const items = e.clipboardData?.items;
+  if (!items) return;
+
+  // Collect all image files from clipboard
+  const imageFiles = [];
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    // Check if clipboard item is an image
+    if (item.type.startsWith('image/')) {
+      const file = item.getAsFile();
+      if (file) {
+        imageFiles.push(file);
+      }
+    }
+  }
+
+  // If images were found, prevent default paste behavior and process them
+  if (imageFiles.length > 0) {
+    e.preventDefault();
+
+    const existingIds = new Set(selectedAttachments.map((attachment) => attachment.id));
+    const previews = await Promise.all(imageFiles.map(async (file) => {
+      try {
+        const previewUrl = await readFileAsDataUrl(file);
+        return {
+          id: `${file.name}-${file.size}-${file.lastModified}`,
+          file,
+          name: file.name,
+          type: file.type,
+          size: file.size,
+          previewUrl,
+        };
+      } catch {
+        return null;
+      }
+    }));
+
+    // Add non-duplicate images to selectedAttachments
+    previews.forEach((preview) => {
+      if (preview && !existingIds.has(preview.id)) selectedAttachments.push(preview);
+    });
+
+    // Show preview if attachments were added
+    if (selectedAttachments.length) {
+      showAttachmentPreview();
+    }
+  }
+});
