@@ -1355,5 +1355,963 @@
         "content": "A new test branch was created for CCD [test-graphical-dashboard]\ndashboardNew.blade.php: Primary refactor and logic migration.wss.gPlexCCDashboardWS.js: Integrated with updated connection logic.graphical-dashboard.css: Added support for new layout states and selection controls."
       }
     ]
+  },
+  {
+    "id": 1776846478161,
+    "timestamp": "2026-04-22T08:27:58.161Z",
+    "userName": "12",
+    "userPhone": "+8801715836598",
+    "message": "Hi\nHow are you doing\nLorem ipsum dolor sit amet",
+    "attachments": [],
+    "history": [
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy..."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Hello"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "How are you doing?"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "lorem"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"lorem\""
+      },
+      {
+        "role": "user",
+        "content": "wow"
+      },
+      {
+        "role": "user",
+        "content": "Chat hostory"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "Lorem ipsum Dolor Sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Lorem ipsum Dolor Sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "hello lorem ipsum dolor sit amet"
+      },
+      {
+        "role": "user",
+        "content": "A new test branch was created for CCD [test-graphical-dashboard]\ndashboardNew.blade.php: Primary refactor and logic migration.wss.gPlexCCDashboardWS.js: Integrated with updated connection logic.graphical-dashboard.css: Added support for new layout states and selection controls."
+      },
+      {
+        "role": "user",
+        "content": "Hi\nHow are you doing\nLorem ipsum dolor sit amet"
+      }
+    ]
+  },
+  {
+    "id": 1776847094262,
+    "timestamp": "2026-04-22T08:38:14.262Z",
+    "userName": "12",
+    "userPhone": "+8801715836598",
+    "message": "Howdy",
+    "attachments": [],
+    "history": [
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy..."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Hello"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "How are you doing?"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "lorem"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"lorem\""
+      },
+      {
+        "role": "user",
+        "content": "wow"
+      },
+      {
+        "role": "user",
+        "content": "Chat hostory"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "Lorem ipsum Dolor Sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Lorem ipsum Dolor Sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "hello lorem ipsum dolor sit amet"
+      },
+      {
+        "role": "user",
+        "content": "A new test branch was created for CCD [test-graphical-dashboard]\ndashboardNew.blade.php: Primary refactor and logic migration.wss.gPlexCCDashboardWS.js: Integrated with updated connection logic.graphical-dashboard.css: Added support for new layout states and selection controls."
+      },
+      {
+        "role": "user",
+        "content": "Hi\nHow are you doing\nLorem ipsum dolor sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Hi\nHow are you doing\nLorem ipsum dolor sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy"
+      }
+    ]
+  },
+  {
+    "id": 1776847240095,
+    "timestamp": "2026-04-22T08:40:40.095Z",
+    "userName": "12",
+    "userPhone": "+8801715836598",
+    "message": "Lorem ipsum",
+    "attachments": [],
+    "history": [
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy..."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Hello"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "How are you doing?"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "lorem"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"lorem\""
+      },
+      {
+        "role": "user",
+        "content": "wow"
+      },
+      {
+        "role": "user",
+        "content": "Chat hostory"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "Lorem ipsum Dolor Sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Lorem ipsum Dolor Sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "hello lorem ipsum dolor sit amet"
+      },
+      {
+        "role": "user",
+        "content": "A new test branch was created for CCD [test-graphical-dashboard]\ndashboardNew.blade.php: Primary refactor and logic migration.wss.gPlexCCDashboardWS.js: Integrated with updated connection logic.graphical-dashboard.css: Added support for new layout states and selection controls."
+      },
+      {
+        "role": "user",
+        "content": "Hi\nHow are you doing\nLorem ipsum dolor sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Hi\nHow are you doing\nLorem ipsum dolor sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Howdy\""
+      },
+      {
+        "role": "user",
+        "content": "Lorem ipsum"
+      }
+    ]
+  },
+  {
+    "id": 1776847245566,
+    "timestamp": "2026-04-22T08:40:45.566Z",
+    "userName": "12",
+    "userPhone": "+8801715836598",
+    "message": "Howdy....",
+    "attachments": [],
+    "history": [
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy..."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Hello"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "How are you doing?"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "lorem"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"lorem\""
+      },
+      {
+        "role": "user",
+        "content": "wow"
+      },
+      {
+        "role": "user",
+        "content": "Chat hostory"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "Lorem ipsum Dolor Sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Lorem ipsum Dolor Sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "hello lorem ipsum dolor sit amet"
+      },
+      {
+        "role": "user",
+        "content": "A new test branch was created for CCD [test-graphical-dashboard]\ndashboardNew.blade.php: Primary refactor and logic migration.wss.gPlexCCDashboardWS.js: Integrated with updated connection logic.graphical-dashboard.css: Added support for new layout states and selection controls."
+      },
+      {
+        "role": "user",
+        "content": "Hi\nHow are you doing\nLorem ipsum dolor sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Hi\nHow are you doing\nLorem ipsum dolor sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Howdy\""
+      },
+      {
+        "role": "user",
+        "content": "Lorem ipsum"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Lorem ipsum\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy...."
+      }
+    ]
+  },
+  {
+    "id": 1776848752138,
+    "timestamp": "2026-04-22T09:05:52.138Z",
+    "userName": "12",
+    "userPhone": "+8801715836598",
+    "message": "Hello",
+    "attachments": [],
+    "history": [
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy..."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Hello"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "How are you doing?"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "lorem"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"lorem\""
+      },
+      {
+        "role": "user",
+        "content": "wow"
+      },
+      {
+        "role": "user",
+        "content": "Chat hostory"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "Lorem ipsum Dolor Sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Lorem ipsum Dolor Sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "hello lorem ipsum dolor sit amet"
+      },
+      {
+        "role": "user",
+        "content": "A new test branch was created for CCD [test-graphical-dashboard]\ndashboardNew.blade.php: Primary refactor and logic migration.wss.gPlexCCDashboardWS.js: Integrated with updated connection logic.graphical-dashboard.css: Added support for new layout states and selection controls."
+      },
+      {
+        "role": "user",
+        "content": "Hi\nHow are you doing\nLorem ipsum dolor sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Hi\nHow are you doing\nLorem ipsum dolor sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Howdy\""
+      },
+      {
+        "role": "user",
+        "content": "Lorem ipsum"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Lorem ipsum\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy...."
+      },
+      {
+        "role": "user",
+        "content": "Hello"
+      }
+    ]
+  },
+  {
+    "id": 1776848764723,
+    "timestamp": "2026-04-22T09:06:04.723Z",
+    "userName": "12",
+    "userPhone": "+8801715836598",
+    "message": "User shared images.",
+    "attachments": [
+      {
+        "name": "disha.png",
+        "type": "image/png",
+        "size": 4615
+      },
+      {
+        "name": "Image_20260420_112937_434.jpeg",
+        "type": "image/jpeg",
+        "size": 994475
+      }
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy..."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Hello"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "How are you doing?"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "lorem"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"lorem\""
+      },
+      {
+        "role": "user",
+        "content": "wow"
+      },
+      {
+        "role": "user",
+        "content": "Chat hostory"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "Lorem ipsum Dolor Sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Lorem ipsum Dolor Sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "hello lorem ipsum dolor sit amet"
+      },
+      {
+        "role": "user",
+        "content": "A new test branch was created for CCD [test-graphical-dashboard]\ndashboardNew.blade.php: Primary refactor and logic migration.wss.gPlexCCDashboardWS.js: Integrated with updated connection logic.graphical-dashboard.css: Added support for new layout states and selection controls."
+      },
+      {
+        "role": "user",
+        "content": "Hi\nHow are you doing\nLorem ipsum dolor sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Hi\nHow are you doing\nLorem ipsum dolor sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Howdy\""
+      },
+      {
+        "role": "user",
+        "content": "Lorem ipsum"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Lorem ipsum\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy...."
+      },
+      {
+        "role": "user",
+        "content": "Hello"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Hello\""
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      }
+    ]
+  },
+  {
+    "id": 1776849547639,
+    "timestamp": "2026-04-22T09:19:07.639Z",
+    "userName": "12",
+    "userPhone": "+8801715836598",
+    "message": "User shared images.",
+    "attachments": [
+      {
+        "name": "disha.png",
+        "type": "image/png",
+        "size": 4615
+      },
+      {
+        "name": "Image_20260420_112937_434.jpeg",
+        "type": "image/jpeg",
+        "size": 994475
+      },
+      {
+        "name": "676860864_122187980096758179_5933285653844705121_n.jpg",
+        "type": "image/jpeg",
+        "size": 856189
+      }
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy..."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Hello"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "How are you doing?"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "lorem"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"lorem\""
+      },
+      {
+        "role": "user",
+        "content": "wow"
+      },
+      {
+        "role": "user",
+        "content": "Chat hostory"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "Lorem ipsum Dolor Sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Lorem ipsum Dolor Sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "hello lorem ipsum dolor sit amet"
+      },
+      {
+        "role": "user",
+        "content": "A new test branch was created for CCD [test-graphical-dashboard]\ndashboardNew.blade.php: Primary refactor and logic migration.wss.gPlexCCDashboardWS.js: Integrated with updated connection logic.graphical-dashboard.css: Added support for new layout states and selection controls."
+      },
+      {
+        "role": "user",
+        "content": "Hi\nHow are you doing\nLorem ipsum dolor sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Hi\nHow are you doing\nLorem ipsum dolor sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Howdy\""
+      },
+      {
+        "role": "user",
+        "content": "Lorem ipsum"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Lorem ipsum\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy...."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Howdy....\""
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      }
+    ]
+  },
+  {
+    "id": 1776849914875,
+    "timestamp": "2026-04-22T09:25:14.875Z",
+    "userName": "Momin",
+    "userPhone": "+880155258969",
+    "message": "Hi Momin! 👋 Greetings from Apex Footwear Limited. How may I help you today? For any inquiries you may also contact our Customer Care at 09617223344 (Service hours: 10:00 AM – 8:00 PM).",
+    "attachments": [
+      {
+        "name": "disha.png",
+        "type": "image/png",
+        "size": 4615
+      },
+      {
+        "name": "Image_20260420_112937_434.jpeg",
+        "type": "image/jpeg",
+        "size": 994475
+      },
+      {
+        "name": "676860864_122187980096758179_5933285653844705121_n.jpg",
+        "type": "image/jpeg",
+        "size": 856189
+      },
+      {
+        "name": "image (1).jpeg",
+        "type": "image/jpeg",
+        "size": 123491
+      },
+      {
+        "name": "image.jpeg",
+        "type": "image/jpeg",
+        "size": 123491
+      },
+      {
+        "name": "gplex_ai_logo.png",
+        "type": "image/png",
+        "size": 8009
+      }
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "Hi Momin! 👋 Greetings from Apex Footwear Limited. How may I help you today? For any inquiries you may also contact our Customer Care at 09617223344 (Service hours: 10:00 AM – 8:00 PM)."
+      }
+    ]
   }
 ]
