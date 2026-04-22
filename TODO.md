@@ -31,7 +31,7 @@
 - Image file type validation
 - File metadata handling
 
-### User Interaction
+### User Interaction+
 
 - Clipboard support for copy/paste
 - Keyboard shortcuts
