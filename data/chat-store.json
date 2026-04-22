@@ -902,5 +902,458 @@
         "content": "Lorem ipsum Dolor Sit amet"
       }
     ]
+  },
+  {
+    "id": 1776832354066,
+    "timestamp": "2026-04-22T04:32:34.066Z",
+    "userName": "12",
+    "userPhone": "+8801715836598",
+    "message": "User shared images.",
+    "attachments": [
+      {
+        "name": "670871197_1552978916452509_7481524888577355894_n.jpg",
+        "type": "image/jpeg",
+        "size": 272359
+      },
+      {
+        "name": "image (1).jpeg",
+        "type": "image/jpeg",
+        "size": 123491
+      },
+      {
+        "name": "image.jpeg",
+        "type": "image/jpeg",
+        "size": 123491
+      },
+      {
+        "name": "nodejs.org_en_blog_release_v24.11.0.png",
+        "type": "image/png",
+        "size": 107126
+      },
+      {
+        "name": "Gemini_Generated_Image_4slkwy4slkwy4slk.png",
+        "type": "image/png",
+        "size": 1395784
+      },
+      {
+        "name": "Make a Banned image of a Scooty Bike riding beside a beach or seashore. Like a cross image on a bike poster (1).jpg",
+        "type": "image/jpeg",
+        "size": 278473
+      },
+      {
+        "name": "Make a Banned image of a Scooty Bike riding beside a beach or seashore. Like a cross image on a bike poster.jpg",
+        "type": "image/jpeg",
+        "size": 278473
+      },
+      {
+        "name": "ChatGPT Image Nov 2, 2025, 04_25_42 PM.png",
+        "type": "image/png",
+        "size": 3562400
+      }
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy..."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Hello"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "How are you doing?"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "lorem"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"lorem\""
+      },
+      {
+        "role": "user",
+        "content": "wow"
+      },
+      {
+        "role": "user",
+        "content": "Chat hostory"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "Lorem ipsum Dolor Sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Lorem ipsum Dolor Sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      }
+    ]
+  },
+  {
+    "id": 1776832428980,
+    "timestamp": "2026-04-22T04:33:48.980Z",
+    "userName": "12",
+    "userPhone": "+8801715836598",
+    "message": "hello lorem ipsum dolor sit amet",
+    "attachments": [
+      {
+        "name": "nodejs.org_en_blog_release_v24.11.0.png",
+        "type": "image/png",
+        "size": 107126
+      },
+      {
+        "name": "Gemini_Generated_Image_4slkwy4slkwy4slk.png",
+        "type": "image/png",
+        "size": 1395784
+      },
+      {
+        "name": "Make a Banned image of a Scooty Bike riding beside a beach or seashore. Like a cross image on a bike poster (1).jpg",
+        "type": "image/jpeg",
+        "size": 278473
+      },
+      {
+        "name": "Make a Banned image of a Scooty Bike riding beside a beach or seashore. Like a cross image on a bike poster.jpg",
+        "type": "image/jpeg",
+        "size": 278473
+      },
+      {
+        "name": "ChatGPT Image Nov 2, 2025, 04_25_42 PM.png",
+        "type": "image/png",
+        "size": 3562400
+      },
+      {
+        "name": "ingmar-LPBuDcRrinA-unsplash (1).jpg",
+        "type": "image/jpeg",
+        "size": 2112763
+      },
+      {
+        "name": "ingmar-LPBuDcRrinA-unsplash (2).jpg",
+        "type": "image/jpeg",
+        "size": 2112763
+      },
+      {
+        "name": "ingmar-LPBuDcRrinA-unsplash.jpg",
+        "type": "image/jpeg",
+        "size": 7641873
+      },
+      {
+        "name": "joel-filipe-jU9VAZDGMzs-unsplash.jpg",
+        "type": "image/jpeg",
+        "size": 451296
+      },
+      {
+        "name": "Rectangle 112.png",
+        "type": "image/png",
+        "size": 68470
+      },
+      {
+        "name": "image (2).png",
+        "type": "image/png",
+        "size": 4080603
+      },
+      {
+        "name": "WhatsApp-Image-2025-04-20-at-10.20 (1).jpg",
+        "type": "image/jpeg",
+        "size": 7377040
+      },
+      {
+        "name": "WhatsApp-Image-2025-04-20-at-10.20.jpg",
+        "type": "image/jpeg",
+        "size": 7377040
+      },
+      {
+        "name": "26 march (2).jpg",
+        "type": "image/jpeg",
+        "size": 991854
+      },
+      {
+        "name": "26 march.jpg",
+        "type": "image/jpeg",
+        "size": 1027920
+      },
+      {
+        "name": "screencapture-localhost-momin-gplexCRM-public-2025-02-20-09_41_02.png",
+        "type": "image/png",
+        "size": 402982
+      },
+      {
+        "name": "Numeric-Conversions.png",
+        "type": "image/png",
+        "size": 716655
+      },
+      {
+        "name": "image (6).png",
+        "type": "image/png",
+        "size": 159268
+      },
+      {
+        "name": "mains.jpg",
+        "type": "image/jpeg",
+        "size": 4435352
+      },
+      {
+        "name": "image-min.jpg",
+        "type": "image/jpeg",
+        "size": 1846768
+      },
+      {
+        "name": "image.jpg",
+        "type": "image/jpeg",
+        "size": 2462412
+      }
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy..."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Hello"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "How are you doing?"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "lorem"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"lorem\""
+      },
+      {
+        "role": "user",
+        "content": "wow"
+      },
+      {
+        "role": "user",
+        "content": "Chat hostory"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "Lorem ipsum Dolor Sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Lorem ipsum Dolor Sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "hello lorem ipsum dolor sit amet"
+      }
+    ]
+  },
+  {
+    "id": 1776833028103,
+    "timestamp": "2026-04-22T04:43:48.103Z",
+    "userName": "12",
+    "userPhone": "+8801715836598",
+    "message": "A new test branch was created for CCD [test-graphical-dashboard]\ndashboardNew.blade.php: Primary refactor and logic migration.wss.gPlexCCDashboardWS.js: Integrated with updated connection logic.graphical-dashboard.css: Added support for new layout states and selection controls.",
+    "attachments": [
+      {
+        "name": "670871197_1552978916452509_7481524888577355894_n.jpg",
+        "type": "image/jpeg",
+        "size": 272359
+      },
+      {
+        "name": "image (1).jpeg",
+        "type": "image/jpeg",
+        "size": 123491
+      },
+      {
+        "name": "image.jpeg",
+        "type": "image/jpeg",
+        "size": 123491
+      }
+    ],
+    "history": [
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Howdy..."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "Hello"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "How are you doing?"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "lorem"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"lorem\""
+      },
+      {
+        "role": "user",
+        "content": "wow"
+      },
+      {
+        "role": "user",
+        "content": "Chat hostory"
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "user",
+        "content": "Lorem ipsum Dolor Sit amet"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"Lorem ipsum Dolor Sit amet\""
+      },
+      {
+        "role": "user",
+        "content": "User shared images."
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your message! I received: \"User shared images.\""
+      },
+      {
+        "role": "user",
+        "content": "hello lorem ipsum dolor sit amet"
+      },
+      {
+        "role": "user",
+        "content": "A new test branch was created for CCD [test-graphical-dashboard]\ndashboardNew.blade.php: Primary refactor and logic migration.wss.gPlexCCDashboardWS.js: Integrated with updated connection logic.graphical-dashboard.css: Added support for new layout states and selection controls."
+      }
+    ]
   }
 ]

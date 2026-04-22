@@ -338,8 +338,9 @@ function showAttachmentPreview() {
     `;
     attachmentThumbs.appendChild(thumbWrap);
   });
+  // Show preview panel using block display (no longer absolute positioned)
   attachmentPreview.classList.remove('hidden');
-  attachmentPreview.classList.add('inline-flex');
+  attachmentPreview.classList.add('block');
 }
 
 /** Clears pending files and hides the preview panel. Safe to call after sending or on cancel. */
@@ -349,7 +350,7 @@ function clearAttachments() {
   if (attachmentThumbs) attachmentThumbs.innerHTML = '';
   if (attachmentPreview) {
     attachmentPreview.classList.add('hidden');
-    attachmentPreview.classList.remove('inline-flex');
+    attachmentPreview.classList.remove('block');
   }
 }
 
